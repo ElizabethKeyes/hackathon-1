@@ -4,12 +4,12 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 class RecipesService {
 
   async getRecipes(query) {
-    const recipes = await dbContext.Recipes.find(query)
+    const recipes = await dbContext.Recipes.find(query).populate('comments')
     return recipes
   }
 
   async getRecipeById(recipeId) {
-    const foundRecipe = await dbContext.Recipes.findById(recipeId)
+    const foundRecipe = await dbContext.Recipes.findById(recipeId).populate('comments')
     if (!foundRecipe) {
       throw new BadRequest("Recipe not found")
     }
@@ -17,7 +17,7 @@ class RecipesService {
   }
 
   async getRecipesByCreator(creatorId) {
-    const recipes = await dbContext.Recipes.find({ creatorId })
+    const recipes = await dbContext.Recipes.find({ creatorId }).populate('comments')
     return recipes
   }
 
