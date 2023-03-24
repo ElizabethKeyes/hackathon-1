@@ -1,0 +1,18 @@
+.navbar {
+  min-height: 10vh;
+}
+
+.list-card {
+  height: 25vh;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.list-image {
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  margin-right: .5em;
+}
