@@ -11,8 +11,10 @@ export class RecipesController extends BaseController {
             // NOTE we want to use auth0 here 
             .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createRecipe)
+            .put('/:recipeId', this.editRecipe)
+            .delete('/:recipeId', this.deleteRecipe)
     }
-    
+
     async getRecipes(req, res, next) {
         try {
             const query = req.query
@@ -22,7 +24,7 @@ export class RecipesController extends BaseController {
             next(error)
         }
     }
-    
+
     async getRecipeById(req, res, next) {
         try {
             const recipeId = req.params.recipeId
@@ -35,8 +37,32 @@ export class RecipesController extends BaseController {
     async createRecipe(req, res, next) {
         try {
             const recipeData = req.body
+            const userId = req.userInfo.id
+            recipeData.creatorId = userId
             const newRecipe = await recipesService.createRecipe(recipeData)
             return res.send(newRecipe)
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async editRecipe(req, res, next) {
+        try {
+            const recipeEdits = req.body
+            const recipeId = req.params.recipeId
+            const editedRecipe = await recipesService.editRecipe(recipeEdits, recipeId)
+            res.send(editedRecipe)
+
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    async deleteRecipe(req, res, next) {
+        try {
+            const recipeId = req.params.recipeId
+            await recipesService.deleteRecipe(recipeId)
+            res.send(`deleted recipe ${recipeId}`)
         } catch (error) {
             next(error)
         }
