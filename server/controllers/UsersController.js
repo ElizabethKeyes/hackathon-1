@@ -7,13 +7,13 @@ export class UsersController extends BaseController {
   constructor() {
     super('api/users')
     this.router
-      .get('/:userId/recipes', this.getRecipesByUser)
+      .get('/:userId/recipes', this.getRecipesByCreator)
       .get('/:userId/comments', this.getCommentsByCreator)
   }
-  async getRecipesByUser(req, res, next) {
+  async getRecipesByCreator(req, res, next) {
     try {
-      const userId = req.params.userId
-      const recipes = await recipesService.getRecipesByUser(userId)
+      const creatorId = req.params.userId
+      const recipes = await recipesService.getRecipesByCreator(creatorId)
       res.send(recipes)
     } catch (error) {
       next(error)

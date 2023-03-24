@@ -41,6 +41,7 @@ export class RecipesController extends BaseController {
     try {
       const recipeId = req.params.recipeId
       const comments = await commentsService.getCommentsByRecipeId(recipeId)
+      res.send(comments)
     } catch (error) {
       next(error)
     }

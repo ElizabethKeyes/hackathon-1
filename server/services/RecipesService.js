@@ -16,9 +16,8 @@ class RecipesService {
     return foundRecipe
   }
 
-  async getRecipesByUser(userId) {
-    // NOTE maybe we want to name things better later
-    const recipes = await dbContext.Recipes.find({ creatorId: userId })
+  async getRecipesByCreator(creatorId) {
+    const recipes = await dbContext.Recipes.find({ creatorId })
     return recipes
   }
 
