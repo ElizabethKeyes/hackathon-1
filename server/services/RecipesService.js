@@ -16,6 +16,11 @@ class RecipesService {
     return foundRecipe
   }
 
+  async getRecipesByUser(userId) {
+    const recipes = await dbContext.Recipes.find({ userId: userId })
+    return recipes
+  }
+
   async createRecipe(recipeData) {
     const newRecipe = await dbContext.Recipes.create(recipeData)
     //await newRecipe.populate('user', 'img')
