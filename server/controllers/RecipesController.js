@@ -9,8 +9,8 @@ export class RecipesController extends BaseController {
             .get('', this.getRecipes)
             .get('/:recipeId', this.getRecipeById)
             // NOTE we want to use auth0 here 
+            .use(Auth0Provider.getAuthorizedUserInfo)
             .post('', this.createRecipe)
-            
     }
     
     async getRecipes(req, res, next) {

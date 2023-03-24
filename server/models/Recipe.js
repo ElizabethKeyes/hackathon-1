@@ -2,12 +2,12 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 export const RecipeSchema = new Schema({
-    title: {type: String, required: true, minLength: 5, maxLength: 20 },
+    title: {type: String, required: true, minLength: 5, maxLength: 200 },
     imgUrl: { type: String, required: true },
-    description: { type: String, required: true, minLength: 20, maxLength: 100 },
-    ingredients: {type: String, required: true, maxLength: 100 },
-    steps: { type: String, required: true, maxLength: 150 }
-    // createdBy: { type: Schema.Types.ObjectId, required: true, ref: 'Account' }
+    description: { type: String, required: true, minLength: 20, maxLength: 1000 },
+    ingredients: {type: String, required: true, maxLength: 1000 },
+    steps: { type: String, required: true, maxLength: 1500 },
+    creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' }
 },
 { timestamps: true, toJSON: { virtuals: true } }
 
