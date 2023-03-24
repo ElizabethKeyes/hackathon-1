@@ -20,6 +20,27 @@ RecipeSchema.virtual('comments', {
   justOne: true
 })
 
+RecipeSchema.virtual('comment-count', {
+  localField: '_id',
+  ref: 'Comment',
+  foreignField: 'recipeId',
+  count: true
+})
+
+RecipeSchema.virtual('recipe-upvotes', {
+  localField: '_id',
+  ref: 'UpvoteRecipe',
+  foreignField: 'recipeId',
+  count: true
+})
+
+RecipeSchema.virtual('recipe-downvotes', {
+  localField: '_id',
+  ref: 'DownvoteRecipe',
+  foreignField: 'recipeId',
+  count: true
+})
+
 
 // {
 //   "title" : "Fried Chicken Ice Cream",
