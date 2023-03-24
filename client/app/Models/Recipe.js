@@ -7,6 +7,8 @@ export class Recipe {
     this.description = data.description
     this.ingredients = data.ingredients
     this.steps = data.steps
+    this.id = data.id
+
   }
 
   get ListTemplate() {
@@ -24,6 +26,12 @@ export class Recipe {
       </div>
     </div>
   </div>`
+  }
+
+  get activeRecipeTemplate() {
+    return `
+    
+    `
   }
 
 }

@@ -22,7 +22,8 @@
         <img src="https://freesvg.org/img/daily-bread.png" class="ms-2" height="45" alt="" loading="lazy">
         <h2 class="ms-2">BreaddIt</h2>
       </div>
-      <button class="btn btn-warning ms-5" data-bs-toggle="modal" data-bs-target="#modal">Create Post</button>
+      <button class="btn btn-warning ms-5" data-bs-toggle="modal" data-bs-target="#modal">Create
+        Post</button>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -47,7 +48,7 @@
       </div>
       <!-- STUB List template -->
       <div class="col-11" id="recipeList">
-        <div class="list-card d-flex elevation-4">
+        <!-- <div class="list-card d-flex elevation-4">
           <div>
             <img src="https://www.tastingtable.com/img/gallery/moroccan-chickpea-stew-recipe/intro-1641487760.webp"
               class="list-image" alt="">
@@ -57,7 +58,7 @@
             <p>This chickpea and vegetable stew is a hearty and flavorful meal that's perfect for a cozy night in or as
               a nutritious and satisfying lunch. </p>
           </div>
-        </div>
+        </div> -->
       </div>
 
     </section>
@@ -70,13 +71,101 @@
     </div>
   </footer>
 
+
+
+
   <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" id="modal-body">
+    <div class="modal-dialog" id="modal-guts">
       <div class="modal-content">
-        <div class="modal-header"></div>
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modalLabel">Create Recipe</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <form onsubmit="app.recipesController.createRecipe()">
+              <section class="row justify-content-end">
+                <div class=" col-12 form-floating mb-2">
+                  <input class="form-control" type="text" name="title" id="title">
+                  <label for="title">title</label>
+                </div>
+                <div class="form-floating mb-2 col-12">
+                  <input type="url" class="form-control" name="imgUrl" id="imgUrl">
+                  <label for="imgUrl">picture url</label>
+                </div>
+                <div class="form-floating mb-2 col-12">
+                  <input type="text" class="form-control" name="ingredients" id="ingredients">
+                  <label for="ingredients">list your ingredients</label>
+                </div>
+                <div class="form-floating mb-2 col-12">
+                  <input type="text" class="form-control" name="steps" id="steps">
+                  <label for="steps">list your steps of the recipe</label>
+                </div>
+                <div class="form-floating mb-2 col-12">
+                  <input type="text" class="form-control" name="description" id="description">
+                  <label for="description">short description of your recipe</label>
+                </div>
+                <div class="col-2">
+                  <button class="btn btn-primary rounded-pill">cancel</button>
+                </div>
+                <div class="col-4">
+                  <button class="btn btn-warning rounded-pill" data-bs-dismiss="modal" aria-label="Close">create
+                    post</button>
+                </div>
+              </section>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+
+        </div>
       </div>
+
     </div>
   </div>
+
+
+
+
+
+
+
+
+
+  <!-- <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" id="modal-guts">
+      <div class="modal-content">
+        <div class="modal-header">Create recipe </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="app.recipesController.createRecipe()">
+
+          <div class="form-floating">
+            <input type="text" name="title" id="title">
+            <label for="title">title</label>
+          </div>
+          <div>
+            <input type="url" name="imgUrl" id="imgUrl">
+            <label for="imgUrl">picture url</label>
+          </div>
+          <div>
+            <input type="text" name="ingredients" id="ingredients">
+            <label for="ingredients">list your ingredients</label>
+          </div>
+          <div>
+            <input type="text" name="steps" id="steps">
+            <label for="steps">list your steps of the recipe</label>
+          </div>
+          <div>
+            <input type="text" name="description" id="description">
+            <label for="description">short description of your recipe</label>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div> -->
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.auth0.com/js/auth0-spa-js/1.22/auth0-spa-js.production.js"></script>

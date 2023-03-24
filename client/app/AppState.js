@@ -16,6 +16,7 @@ class AppState extends EventEmitter {
   /**@type {import('./Models/Recipe').Recipe|null} */
   recipe = null
 
+  /**@type {import('./Models/Account').Account[]} */
   socketData = []
 }
 
