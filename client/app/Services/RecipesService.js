@@ -1,15 +1,33 @@
 import { server } from "./AxiosService.js"
 import { Recipe } from "../Models/Recipe.js"
 import { appState } from "../AppState.js"
+import { Account } from "../Models/Account.js"
 
 
 class RecipesService {
+    async createRecipe(formData) {
+        console.log(formData);
+        const res = await server.post('api/recipes', formData)
+        console.log(res.data);
+        appState.recipes.push(new Recipe(res.data))
+        appState.emit('recipes')
+    }
     async getAllRecipes() {
         const res = await server.get('api/recipes')
-        // console.log('getting recipes', res.data);
         appState.recipes = res.data.map(r => new Recipe(r))
-        console.log(appState.recipes);
+        console.log('getting recipes', res.data);
+        // appState.recipes = res.data.map(r => new Recipe(r))
+        // console.log(appState.recipes);
     }
 
+    // async setActiveRecipe(recipeId) {
+    //     const recipe = appState.recipes.find(r => r.id == recipeId)
+    //     appState.recipe = recipe
+    // }
+
+    // async deleteRecipe() {
+    //     const recipe = appState.recipe
+    //     const res = await server.delete('api/recipes' + recipe.id)
+    // }
 }
 export const recipesService = new RecipesService()
