@@ -6,10 +6,10 @@ import { getFormData } from "../Utils/FormHandler.js"
 import { setHTML } from "../Utils/Writer.js"
 
 function _drawRecipes() {
-  let recipes = appState.recipes
-  let template = ''
-  recipes.forEach(r => template += r.ListTemplate)
-  setHTML('recipeList', template)
+    let recipes = appState.recipes
+    let template = ''
+    recipes.forEach(r => template += r.ListTemplate)
+    setHTML('recipeList', template)
 }
 
 function _activeRecipeTemplate() {
@@ -19,7 +19,6 @@ function _activeRecipeTemplate() {
 }
 
 export class RecipesController {
-<<<<<<< HEAD
     constructor() {
         this.getAllRecipes()
         appState.on('recipes', _drawRecipes)
@@ -49,19 +48,11 @@ export class RecipesController {
         catch (error) {
             console.log(error)
         }
-=======
-  constructor() {
-    this.getAllRecipes()
-  }
-  async getAllRecipes() {
-    try {
-      await recipesService.getAllRecipes()
->>>>>>> 538540b753e11cfe051f1f99821d6427bc602afe
 
     }
-    catch (error) {
-      console.log(error)
+    catch(error) {
+        console.log(error)
     }
 
-  }
+}
 }
