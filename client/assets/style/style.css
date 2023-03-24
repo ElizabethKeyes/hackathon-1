@@ -2,10 +2,21 @@
   min-height: 10vh;
 }
 
+.search-bar {
+  background-color: white;
+  border-radius: 5px;
+  margin-top: 2em;
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  padding: 1em;
+}
+
 .list-card {
   height: 25vh;
   background-color: white;
   border-radius: 5px;
+  margin-top: 2em;
 }
 
 .list-image {
