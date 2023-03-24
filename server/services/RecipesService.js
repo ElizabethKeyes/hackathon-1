@@ -2,9 +2,6 @@ import { dbContext } from "../db/DbContext.js"
 import { BadRequest, Forbidden } from "../utils/Errors.js"
 
 class RecipesService {
-  getCommentsByUser(userId) {
-    throw new Error("Method not implemented.")
-  }
 
   async getRecipes(query) {
     const recipes = await dbContext.Recipes.find(query)

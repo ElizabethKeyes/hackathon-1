@@ -1,3 +1,4 @@
+import { commentsService } from "../services/CommentsService.js"
 import { recipesService } from "../services/RecipesService.js"
 import BaseController from "../utils/BaseController.js"
 
@@ -22,7 +23,7 @@ export class UsersController extends BaseController {
   async getCommentsByCreator(req, res, next) {
     try {
       const userId = req.params.userId
-      const comments = await recipesService.getCommentsByUser(userId)
+      const comments = await commentsService.getCommentsByCreator(userId)
       res.send(comments)
     } catch (error) {
       next(error)
