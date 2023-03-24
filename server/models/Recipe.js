@@ -2,16 +2,44 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 export const RecipeSchema = new Schema({
-    title: { type: String, required: true, minLength: 5, maxLength: 200 },
-    imgUrl: { type: String, required: true },
-    description: { type: String, required: true, minLength: 20, maxLength: 1000 },
-    ingredients: { type: String, required: true, maxLength: 1000 },
-    steps: { type: String, required: true, maxLength: 1500 },
-    creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' }
+  title: { type: String, required: true, minLength: 5, maxLength: 200 },
+  imgUrl: { type: String, required: true },
+  description: { type: String, required: true, minLength: 20, maxLength: 1000 },
+  ingredients: { type: String, required: true, maxLength: 1000 },
+  steps: { type: String, required: true, maxLength: 1500 },
+  creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' }
 },
-    { timestamps: true, toJSON: { virtuals: true } }
+  { timestamps: true, toJSON: { virtuals: true } }
 
 )
+
+RecipeSchema.virtual('comments', {
+  localField: '_id',
+  ref: 'Comment',
+  foreignField: 'recipeId',
+  justOne: true
+})
+
+RecipeSchema.virtual('comment-count', {
+  localField: '_id',
+  ref: 'Comment',
+  foreignField: 'recipeId',
+  count: true
+})
+
+RecipeSchema.virtual('recipe-upvotes', {
+  localField: '_id',
+  ref: 'UpvoteRecipe',
+  foreignField: 'recipeId',
+  count: true
+})
+
+RecipeSchema.virtual('recipe-downvotes', {
+  localField: '_id',
+  ref: 'DownvoteRecipe',
+  foreignField: 'recipeId',
+  count: true
+})
 
 
 // {

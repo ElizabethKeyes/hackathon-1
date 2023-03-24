@@ -45,8 +45,8 @@ export class RecipesController extends BaseController {
     } catch (error) {
       next(error)
     }
-
   }
+
   async createRecipe(req, res, next) {
     try {
       const recipeData = req.body

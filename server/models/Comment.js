@@ -11,3 +11,17 @@ export const CommentSchema = new Schema({
 },
   { timestamps: true, toJSON: { virtuals: true } }
 )
+
+CommentSchema.virtual('comment-upvotes', {
+  localField: '_id',
+  ref: 'Comment',
+  foreignField: 'commentId',
+  count: true
+})
+
+CommentSchema.virtual('comment-downvotes', {
+  localField: '_id',
+  ref: 'Comment',
+  foreignField: 'commentId',
+  count: true
+})
