@@ -1,4 +1,5 @@
 import { Auth0Provider } from "@bcwdev/auth0provider"
+import { downvoteRecipesService } from "../services/DownvoteRecipesService.js"
 import BaseController from "../utils/BaseController.js"
 
 export class DownvoteRecipesController extends BaseController {
