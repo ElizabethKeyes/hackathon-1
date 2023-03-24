@@ -13,9 +13,14 @@ function _drawRecipes() {
 }
 
 function _activeRecipeTemplate() {
-    if (appState.recipe) {
-        setHTML('modal', appState.recipe.activeRecipeTemplate)
+    if(appState.recipe) {
+        setHTML('active-modal', appState.recipe.activeRecipeTemplate)
+        bootstrap.Modal.getOrCreateInstance('#exampleModal').show()
+
     }
+    // if (appState.recipe) {
+    //     document.getElementById('active-modal').innerHTML = (appState.recipe.activeRecipeTemplate)
+    // }
 }
 
 export class RecipesController {
@@ -26,7 +31,6 @@ export class RecipesController {
     }
 
     async createRecipe() {
-        debugger
         event.preventDefault()
         let form = event.target
         let formData = getFormData(form)
@@ -38,6 +42,7 @@ export class RecipesController {
         }
         // console.log(formData);
         form.reset()
+        bootstrap.Modal.getOrCreateInstance('#modal').hide()
     }
 
     async getAllRecipes() {
@@ -54,4 +59,7 @@ export class RecipesController {
         console.log(error)
     }
 
+    setActiveRecipe(recipeId) {
+        recipesService.setActiveRecipe(recipeId)
+    }
 }

@@ -20,10 +20,16 @@ class RecipesService {
         // console.log(appState.recipes);
     }
 
-    // async setActiveRecipe(recipeId) {
-    //     const recipe = appState.recipes.find(r => r.id == recipeId)
-    //     appState.recipe = recipe
-    // }
+    setActiveRecipe(recipeId) {
+        const recipe = appState.recipes.find(r => r.id == recipeId)
+        appState.recipe = recipe
+        console.log('recipe active');
+    }
+
+    async becomeViewer() {
+        const res = await server.post('api/viewers', { recipeId: appState.recipe.id })
+        console.log('viewing');
+    }
 
     // async deleteRecipe() {
     //     const recipe = appState.recipe
