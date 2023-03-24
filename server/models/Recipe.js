@@ -17,7 +17,7 @@ RecipeSchema.virtual('comments', {
   localField: '_id',
   ref: 'Comment',
   foreignField: 'recipeId',
-  justOne: true
+  // justOne: true
 })
 
 RecipeSchema.virtual('comment-count', {
