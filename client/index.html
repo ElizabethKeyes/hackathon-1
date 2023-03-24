@@ -22,7 +22,7 @@
         <img src="https://freesvg.org/img/daily-bread.png" class="ms-2" height="45" alt="" loading="lazy">
         <h2 class="ms-2">BreaddIt</h2>
       </div>
-      <button class="btn btn-warning ms-5">Create Post</button>
+      <button class="btn btn-warning ms-5" data-bs-toggle="modal" data-bs-target="#modal">Create Post</button>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -46,7 +46,7 @@
         </div>
       </div>
       <!-- STUB List template -->
-      <div class="col-11">
+      <div class="col-11" id="recipeList">
         <div class="list-card d-flex elevation-4">
           <div>
             <img src="https://www.tastingtable.com/img/gallery/moroccan-chickpea-stew-recipe/intro-1641487760.webp"
@@ -69,6 +69,14 @@
       </div>
     </div>
   </footer>
+
+  <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" id="modal-body">
+      <div class="modal-content">
+        <div class="modal-header"></div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://cdn.auth0.com/js/auth0-spa-js/1.22/auth0-spa-js.production.js"></script>

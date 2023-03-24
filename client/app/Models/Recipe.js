@@ -2,7 +2,11 @@
 
 export class Recipe {
   constructor(data) {
-
+    this.title = data.title
+    this.imgUrl = data.imgUrl
+    this.description = data.description
+    this.ingredients = data.ingredients
+    this.steps = data.steps
   }
 
   get ListTemplate() {
@@ -11,13 +15,12 @@ export class Recipe {
     <div class="col-11">
     <div class="list-card d-flex">
       <div>
-        <img src="https://www.tastingtable.com/img/gallery/moroccan-chickpea-stew-recipe/intro-1641487760.webp"
-          class="list-image" alt="">
+        <img src="${this.imgUrl}"
+          class="list-image" alt="recipe picture">
       </div>
       <div class="p-2 d-flex flex-column justify-content-center">
-        <h3>Chickpea Soup</h3>
-        <p>This chickpea and vegetable stew is a hearty and flavorful meal that's perfect for a cozy night in or as
-          a nutritious and satisfying lunch. </p>
+        <h3>${this.title}</h3>
+        <p>${this.description}</p>
       </div>
     </div>
   </div>`
