@@ -6,16 +6,24 @@ import { Account } from "../Models/Account.js"
 
 class RecipesService {
   async createRecipe(formData) {
-    // console.log(formData);
+    console.log(formData)
     const res = await server.post('api/recipes', formData)
-    // console.log(res.data);
-    appState.recipes.push(new Recipe(res.data))
+    console.log(res.data)
+    const recipe = new Recipe(res.data)
+    appState.recipes.push(recipe)
+    this.setActiveRecipe(recipe)
     appState.emit('recipes')
   }
+
+  async deleteRecipe(recipeId) {
+    await server.delete('api/recipes/' + recipeId)
+    appState.recipes = appState.recipes.filter(r => r.id != recipeId)
+  }
+
   async getAllRecipes() {
     const res = await server.get('api/recipes')
     appState.recipes = res.data.map(r => new Recipe(r))
-    console.log('[ALL RECIPES]', appState.recipes);
+    console.log('getting recipes', res.data)
     // appState.recipes = res.data.map(r => new Recipe(r))
     // console.log(appState.recipes);
   }
@@ -41,6 +49,10 @@ class RecipesService {
     console.log('[DOWNVOTED RECIPE]', res.data);
   }
 
+  // async deleteRecipe() {
+  //     const recipe = appState.recipe
+  //     const res = await server.delete('api/recipes' + recipe.id)
+  // }
   // async deleteRecipe() {
   //     const recipe = appState.recipe
   //     const res = await server.delete('api/recipes' + recipe.id)

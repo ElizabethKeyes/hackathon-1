@@ -9,6 +9,7 @@ export class Recipe {
     this.ingredients = data.ingredients
     this.steps = data.steps
     this.id = data.id
+    this.creatorId = data.creatorId
     this.comments = data.comments
     this.commentCount = data['comment-count']
     this.recipeUpvotes = data['recipe-upvotes']
@@ -40,7 +41,7 @@ export class Recipe {
   }
 
   get ingredientFormatter() {
-    let ingredients = this.ingredients.split(', ')
+    let ingredients = this.ingredients.split(',')
     let template = ''
     for (let i in ingredients) {
       template += `<li>${ingredients[i]}</li>`
@@ -52,21 +53,24 @@ export class Recipe {
   get commentDisplay() {
     let comments = this.comments
     let template = ''
-    comments.forEach(c => {
-      // console.log(c, 'logging c');
-      template += `
-      <div>
-      <div class="d-flex ms-2 me-5 align-content-center">
-      <img src="${c.user ? c.user.picture : appState.account.picture}" class="comment-avatar">
-      <p class="mb-0 ms-1">${c.user ? c.user.name : appState.account.name}</p>
-      </div>
-      <div>
-      <p class="ms-5 ps-2 fs-6">${c.content}</p>
-      </div>
-      </div>
-      <hr>
-      `
-    })
+    if (comments) {
+
+      comments.forEach(c => {
+        console.log(c, 'logging c')
+        template += `
+        <div>
+        <div class="d-flex ms-2 me-5 align-content-center">
+        <img src="${c.user ? c.user.picture : appState.account.picture}" class="comment-avatar">
+        <p class="mb-0 ms-1">${c.user ? c.user.name : appState.account.name}</p>
+        </div>
+        <div>
+        <p class="ms-5 ps-2 fs-6">${c.content}</p>
+        </div>
+        </div>
+        <hr>
+        `
+      })
+    }
     return template
   }
 
@@ -100,6 +104,7 @@ export class Recipe {
       <button type="submit" class="btn btn-success"><i class="mdi mdi-check text-light"></i></button>
       </form>
       <div class="modal-footer">
+        ${this.creatorId == appState.account.id ? `<button type="button" class="btn btn-danger" onclick="app.recipesController.deleteRecipe('${this.id}')">Delete Recipe</button>` : ''}
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
