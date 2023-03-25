@@ -15,6 +15,7 @@ export class RecipesController extends BaseController {
       .post('', this.createRecipe)
       .put('/:recipeId', this.editRecipe)
       .delete('/:recipeId', this.deleteRecipe)
+      .post('/:recipeId/comment', this.leaveComment)
   }
 
   async getRecipes(req, res, next) {
@@ -79,5 +80,18 @@ export class RecipesController extends BaseController {
     } catch (error) {
       next(error)
     }
+  }
+
+  async leaveComment(req, res, next) {
+    try {
+      const commentContent = req.body
+      commentContent.creatorId = req.userInfo.id
+      commentContent.recipeId = req.params.recipeId
+      const newComment = await commentsService.leaveComment(commentContent)
+      res.send(newComment)
+    } catch (error) {
+      next(error)
+    } // const recipeId = req.params.recipeId
+
   }
 }
