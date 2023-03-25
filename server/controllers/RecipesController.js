@@ -75,7 +75,9 @@ export class RecipesController extends BaseController {
   async deleteRecipe(req, res, next) {
     try {
       const recipeId = req.params.recipeId
-      await recipesService.deleteRecipe(recipeId)
+      const userId = req.userInfo.id
+
+      await recipesService.deleteRecipe(recipeId, userId)
       res.send(`deleted recipe ${recipeId}`)
     } catch (error) {
       next(error)
