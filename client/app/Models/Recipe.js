@@ -45,16 +45,26 @@ export class Recipe {
     return template
   }
 
-  // get commentDisplay() {
-  //   let comments = this.comments
-  //   let template = ''
-  //   comments.forEach(c => {
-  //     template += `
-
-  //     `
-  //   })
-  //   return
-  // }
+  get commentDisplay() {
+    let comments = this.comments
+    let template = ''
+    comments.forEach(c => {
+      console.log(c, 'logging c.user');
+      template += `
+      <div>
+      <div class="d-flex ms-2 me-5 align-content-center">
+      <img src="${c.user.picture}" class="comment-avatar">
+      <p class="mb-0 ms-1">${c.user.name}</p>
+      </div>
+      <div>
+      <p class="ms-5 ps-2 fs-6">${c.content}</p>
+      </div>
+      </div>
+      <hr>
+      `
+    })
+    return template
+  }
 
   get activeRecipeTemplate() {
     return `
@@ -80,7 +90,11 @@ export class Recipe {
       </div>
       <hr>
       <h3 class="text-center">Comments</h3>
-      // INSERT COMMENTS HERE
+      ${this.commentDisplay}
+      <form onsubmit="app.commentsController.postComment()">
+      <textarea class="form-control" id="comment" name="comment"></textarea>
+      <button type="submit" class="btn btn-success"><i class="mdi mdi-check text-light"></i></button>
+      </form>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
