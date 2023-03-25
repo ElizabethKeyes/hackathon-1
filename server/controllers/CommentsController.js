@@ -8,10 +8,12 @@ export class CommentsController extends BaseController {
   constructor() {
     super('api/comments')
     this.router
+      .get('/:commentId', this.getUpvotesByCommentId)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('/:recipeId', this.leaveComment)
 
   }
+
   async leaveComment(req, res, next) {
     try {
       const commentContent = req.body
@@ -23,5 +25,7 @@ export class CommentsController extends BaseController {
       next(error)
     } // const recipeId = req.params.recipeId
 
+  }
+  getUpvotesByCommentId(arg0, getUpvotesByCommentId) {
   }
 }
