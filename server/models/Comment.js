@@ -26,14 +26,8 @@ CommentSchema.virtual('comment-downvotes', {
   count: true
 })
 
-CommentSchema.virtual('user-picture', {
+CommentSchema.virtual('user', {
   localField: 'creatorId',
   ref: 'Account',
-  foreignField: 'picture'
-})
-
-CommentSchema.virtual('user-name', {
-  localField: 'creatorId',
-  ref: 'Account',
-  foreignField: 'name'
+  foreignField: '_id'
 })

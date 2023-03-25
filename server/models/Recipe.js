@@ -41,17 +41,13 @@ RecipeSchema.virtual('recipe-downvotes', {
   count: true
 })
 
-RecipeSchema.virtual('user-picture', {
+RecipeSchema.virtual('user', {
   localField: 'creatorId',
   ref: 'Account',
-  foreignField: 'picture'
+  foreignField: '_id'
 })
 
-RecipeSchema.virtual('user-name', {
-  localField: 'creatorId',
-  ref: 'Account',
-  foreignField: 'name'
-})
+
 
 
 // {
