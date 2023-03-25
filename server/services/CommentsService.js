@@ -21,7 +21,7 @@ class CommentsService {
   async deleteComment(commentId, userId) {
     const comment = await dbContext.Comments.findById(commentId)
     if (comment.creatorId == userId) {
-      await dbContext.Comments.findByIdAndDelete(commentId)
+      await dbContext.Comments.findByIdAndDelete({commentId: commentId})
     } else {
       throw new Forbidden('you are not authorized to delete this function')
     }
