@@ -17,8 +17,8 @@ export class Recipe {
     // ANCHOR come here to finish up
     return `
     <div class="col-1 d-flex flex-column justify-content-center align-items-end">
-      <i class="mdi mdi-arrow-up-bold-outline"></i> <br>
-      <i class="mdi mdi-arrow-down-bold-outline"></i>
+      <i class="mdi mdi-arrow-up-bold-outline upvote-icon fs-4"></i> <br>
+      <i class="mdi mdi-arrow-down-bold-outline downvote-icon fs-4"></i>
     </div>
     <div class="col-10 me-3 my-3">
       <div onclick="app.recipesController.setActiveRecipe('${this.id}')"  class="list-card elevation-4 d-flex selectable">
