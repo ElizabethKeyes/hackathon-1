@@ -38,8 +38,13 @@ class RecipesService {
     return editedRecipe
   }
 
-  async deleteRecipe(recipeId) {
-    await dbContext.Recipes.findByIdAndDelete(recipeId)
+  async deleteRecipe(recipeId, userId) {
+    const recipe = await dbContext.Recipes.findById(recipeId)
+    if (recipe.creatorId == userId) {
+      await dbContext.Recipes.findByIdAndDelete(recipeId)
+    } else {
+      throw new Forbidden('you are not authorized to delete this function')
+    }
   }
 
 }
