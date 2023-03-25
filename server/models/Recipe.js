@@ -41,6 +41,18 @@ RecipeSchema.virtual('recipe-downvotes', {
   count: true
 })
 
+RecipeSchema.virtual('user-picture', {
+  localField: 'creatorId',
+  ref: 'Account',
+  foreignField: 'picture'
+})
+
+RecipeSchema.virtual('user-name', {
+  localField: 'creatorId',
+  ref: 'Account',
+  foreignField: 'name'
+})
+
 
 // {
 //   "title" : "Fried Chicken Ice Cream",

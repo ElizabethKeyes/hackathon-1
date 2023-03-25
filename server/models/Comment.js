@@ -25,3 +25,15 @@ CommentSchema.virtual('comment-downvotes', {
   foreignField: 'commentId',
   count: true
 })
+
+CommentSchema.virtual('user-picture', {
+  localField: 'creatorId',
+  ref: 'Account',
+  foreignField: 'picture'
+})
+
+CommentSchema.virtual('user-name', {
+  localField: 'creatorId',
+  ref: 'Account',
+  foreignField: 'name'
+})
