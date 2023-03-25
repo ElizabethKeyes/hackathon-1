@@ -65,4 +65,22 @@ export class RecipesController {
   setActiveRecipe(recipeId) {
     recipesService.setActiveRecipe(recipeId)
   }
+
+  async upvoteRecipe(recipeId) {
+    try {
+      await recipesService.upvoteRecipe(recipeId)
+    } catch (error) {
+      console.error(error)
+      Pop.error(error)
+    }
+  }
+
+  async downvoteRecipe(recipeId) {
+    try {
+      await recipesService.downvoteRecipe(recipeId)
+    } catch (error) {
+      console.error(error)
+      Pop.error(error)
+    }
+  }
 }

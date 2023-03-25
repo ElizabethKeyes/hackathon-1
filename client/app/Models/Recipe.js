@@ -10,6 +10,9 @@ export class Recipe {
     this.steps = data.steps
     this.id = data.id
     this.comments = data.comments
+    this.commentCount = data['comment-count']
+    this.recipeUpvotes = data['recipe-upvotes']
+    this.recipeDownvotes = data['recipe-downvotes']
   }
 
   get ListTemplate() {
@@ -17,8 +20,8 @@ export class Recipe {
     // ANCHOR come here to finish up
     return `
     <div class="col-1 d-flex flex-column justify-content-center align-items-end">
-      <i class="mdi mdi-arrow-up-bold-outline upvote-icon fs-4"></i> <br>
-      <i class="mdi mdi-arrow-down-bold-outline downvote-icon fs-4"></i>
+      <i onclick="app.recipesController.upvoteRecipe('${this.id}')" class="mdi mdi-arrow-up-bold-outline upvote-icon fs-4"></i> <br>
+      <i onclick="app.recipesController.downvoteRecipe('${this.id}')" class="mdi mdi-arrow-down-bold-outline downvote-icon fs-4"></i>
     </div>
     <div class="col-10 me-3 my-3">
       <div onclick="app.recipesController.setActiveRecipe('${this.id}')"  class="list-card elevation-4 d-flex selectable">
@@ -42,7 +45,7 @@ export class Recipe {
     for (let i in ingredients) {
       template += `<li>${ingredients[i]}</li>`
     }
-    console.log(this.comments)
+    // console.log(this.comments)
     return template
   }
 
@@ -50,7 +53,7 @@ export class Recipe {
     let comments = this.comments
     let template = ''
     comments.forEach(c => {
-      console.log(c, 'logging c');
+      // console.log(c, 'logging c');
       template += `
       <div>
       <div class="d-flex ms-2 me-5 align-content-center">

@@ -10,7 +10,7 @@ class RecipesService {
         path: 'user',
         select: 'name picture'
       }
-    }).populate('comment-count').populate('recipe-upvotes').populate('recipe-downvotes').populate('user', 'picture name')
+    }).populate({ path: 'comment-count' }).populate('recipe-upvotes').populate('recipe-downvotes').populate('user', 'picture name')
     return recipes
   }
 

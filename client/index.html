@@ -87,23 +87,23 @@
             <form onsubmit="app.recipesController.createRecipe()">
               <section class="row justify-content-end">
                 <div class=" col-12 form-floating mb-2">
-                  <input class="form-control" type="text" name="title" id="title">
+                  <input class="form-control" type="text" name="title" id="title" required>
                   <label for="title">title</label>
                 </div>
                 <div class="form-floating mb-2 col-12">
-                  <input type="url" class="form-control" name="imgUrl" id="imgUrl">
+                  <input type="url" class="form-control" name="imgUrl" id="imgUrl" required>
                   <label for="imgUrl">picture url</label>
                 </div>
                 <div class="form-floating mb-2 col-12">
-                  <input type="text" class="form-control" name="ingredients" id="ingredients">
+                  <input type="text" class="form-control" name="ingredients" id="ingredients" required>
                   <label for="ingredients">list your ingredients, comma separated</label>
                 </div>
                 <div class="form-floating mb-2 col-12">
-                  <input type="text" class="form-control" name="steps" id="steps">
+                  <input type="text" class="form-control" name="steps" id="steps" required>
                   <label for="steps">list your steps of the recipe</label>
                 </div>
                 <div class="form-floating mb-2 col-12">
-                  <input type="text" class="form-control" name="description" id="description">
+                  <input type="text" class="form-control" name="description" id="description" required>
                   <label for="description">short description of your recipe</label>
                 </div>
                 <div class="col-2">
