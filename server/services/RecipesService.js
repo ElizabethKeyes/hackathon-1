@@ -4,7 +4,13 @@ import { BadRequest, Forbidden } from "../utils/Errors.js"
 class RecipesService {
 
   async getRecipes(query) {
-    const recipes = await dbContext.Recipes.find(query).populate('comments').populate('comment-count').populate('recipe-upvotes').populate('recipe-downvotes').populate('user', 'picture name')
+    const recipes = await dbContext.Recipes.find(query).populate({
+      path: 'comments',
+      populate: {
+        path: 'user',
+        select: 'name picture'
+      }
+    }).populate('comment-count').populate('recipe-upvotes').populate('recipe-downvotes').populate('user', 'picture name')
     return recipes
   }
 
