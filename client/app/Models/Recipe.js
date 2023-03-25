@@ -21,7 +21,8 @@ export class Recipe {
     // ANCHOR come here to finish up
     return `
     <div class="col-1 d-flex flex-column justify-content-center align-items-end">
-      <i onclick="app.recipesController.upvoteRecipe('${this.id}')" class="mdi mdi-arrow-up-bold-outline upvote-icon fs-4"></i> <br>
+      <i onclick="app.recipesController.upvoteRecipe('${this.id}')" class="mdi mdi-arrow-up-bold-outline upvote-icon fs-4"></i> 
+      <span id="${this.id}" class="me-2">${this.recipeUpvotes - this.recipeDownvotes}</span>
       <i onclick="app.recipesController.downvoteRecipe('${this.id}')" class="mdi mdi-arrow-down-bold-outline downvote-icon fs-4"></i>
     </div>
     <div class="col-10 me-3 my-3">
