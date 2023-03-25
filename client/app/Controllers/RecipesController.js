@@ -3,13 +3,17 @@ import { appState } from "../AppState.js"
 import { Recipe } from "../Models/Recipe.js"
 import { Pop } from "../Utils/Pop.js"
 import { getFormData } from "../Utils/FormHandler.js"
-import { setHTML } from "../Utils/Writer.js"
+import { setHTML, setText } from "../Utils/Writer.js"
 
 function _drawRecipes() {
   let recipes = appState.recipes
   let template = ''
   recipes.forEach(r => template += r.ListTemplate)
   setHTML('recipeList', template)
+}
+
+function _drawVoteCount() {
+
 }
 
 function _activeRecipeTemplate() {
@@ -81,6 +85,7 @@ export class RecipesController {
   async upvoteRecipe(recipeId) {
     try {
       await recipesService.upvoteRecipe(recipeId)
+      setText(recipeId, (parseInt(document.getElementById(recipeId).innerText) + 1))
     } catch (error) {
       console.error(error)
       Pop.error(error)
@@ -90,6 +95,7 @@ export class RecipesController {
   async downvoteRecipe(recipeId) {
     try {
       await recipesService.downvoteRecipe(recipeId)
+      setText(recipeId, (parseInt(document.getElementById(recipeId).innerText) - 1))
     } catch (error) {
       console.error(error)
       Pop.error(error)
