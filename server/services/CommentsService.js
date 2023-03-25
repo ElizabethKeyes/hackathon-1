@@ -1,4 +1,5 @@
 import { dbContext } from "../db/DbContext.js"
+import { Forbidden } from "../utils/Errors.js"
 
 class CommentsService {
 
@@ -17,6 +18,14 @@ class CommentsService {
     return newComment
   }
 
+  async deleteComment(commentId, userId) {
+    const comment = await dbContext.Comments.findById(commentId)
+    if (comment.creatorId == userId) {
+      await dbContext.Comments.findByIdAndDelete(commentId)
+    } else {
+      throw new Forbidden('you are not authorized to delete this function')
+    }
+  }
 }
 
 export const commentsService = new CommentsService()
