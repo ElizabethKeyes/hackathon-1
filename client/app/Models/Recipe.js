@@ -15,9 +15,11 @@ export class Recipe {
     // TODO needs string interpolation for variables once the model has been defined (waiting to see how data comes back from the API)
     // ANCHOR come here to finish up
     return `
-    <div class="col-11">
+    <div class="col-1 d-flex flex-column justify-content-center align-items-end">
       <i class="mdi mdi-arrow-up-bold-outline"></i> <br>
       <i class="mdi mdi-arrow-down-bold-outline"></i>
+    </div>
+    <div class="col-10 me-3 my-3">
       <div onclick="app.recipesController.setActiveRecipe('${this.id}')"  class="list-card elevation-4 d-flex selectable">
         <div>
           <img src="${this.imgUrl}" class="list-image" alt="recipe picture">
@@ -28,6 +30,7 @@ export class Recipe {
         </div>
       </div>
     </div>
+
   
   `
   }
@@ -42,16 +45,16 @@ export class Recipe {
     return template
   }
 
-  get commentDisplay() {
-    let comments = this.comments
-    let template = ''
-    comments.forEach(c => {
-      template += `
-      
-      `
-    })
-    return
-  }
+  // get commentDisplay() {
+  //   let comments = this.comments
+  //   let template = ''
+  //   comments.forEach(c => {
+  //     template += `
+
+  //     `
+  //   })
+  //   return
+  // }
 
   get activeRecipeTemplate() {
     return `
@@ -75,6 +78,9 @@ export class Recipe {
         <p>${this.steps}</p>
         
       </div>
+      <hr>
+      <h3 class="text-center">Comments</h3>
+      // INSERT COMMENTS HERE
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
