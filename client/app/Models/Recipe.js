@@ -1,3 +1,4 @@
+import { appState } from "../AppState.js"
 
 
 export class Recipe {
@@ -49,12 +50,12 @@ export class Recipe {
     let comments = this.comments
     let template = ''
     comments.forEach(c => {
-      console.log(c, 'logging c.user');
+      console.log(c, 'logging c');
       template += `
       <div>
       <div class="d-flex ms-2 me-5 align-content-center">
-      <img src="${c.user.picture}" class="comment-avatar">
-      <p class="mb-0 ms-1">${c.user.name}</p>
+      <img src="${c.user ? c.user.picture : appState.account.picture}" class="comment-avatar">
+      <p class="mb-0 ms-1">${c.user ? c.user.name : appState.account.name}</p>
       </div>
       <div>
       <p class="ms-5 ps-2 fs-6">${c.content}</p>
@@ -92,7 +93,7 @@ export class Recipe {
       <h3 class="text-center">Comments</h3>
       ${this.commentDisplay}
       <form onsubmit="app.commentsController.postComment()">
-      <textarea class="form-control" id="comment" name="comment"></textarea>
+      <textarea class="form-control mb-2" id="comment" name="comment"></textarea>
       <button type="submit" class="btn btn-success"><i class="mdi mdi-check text-light"></i></button>
       </form>
       <div class="modal-footer">
