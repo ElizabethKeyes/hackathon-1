@@ -29,5 +29,6 @@ CommentSchema.virtual('comment-downvotes', {
 CommentSchema.virtual('user', {
   localField: 'creatorId',
   ref: 'Account',
-  foreignField: '_id'
+  foreignField: '_id',
+  justOne: true
 })
