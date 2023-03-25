@@ -13,19 +13,23 @@ export class Recipe {
 
   get ListTemplate() {
     // TODO needs string interpolation for variables once the model has been defined (waiting to see how data comes back from the API)
+    // ANCHOR come here to finish up
     return `
     <div class="col-11">
-    <div onclick="app.recipesController.setActiveRecipe('${this.id}')"  class="list-card elevation-4 d-flex selectable">
-      <div>
-        <img src="${this.imgUrl}"
-          class="list-image" alt="recipe picture">
-      </div>
-      <div class="p-2 d-flex flex-column justify-content-center">
-        <h3>${this.title}</h3>
-        <p>${this.description}</p>
+      <i class="mdi mdi-arrow-up-bold-outline"></i> <br>
+      <i class="mdi mdi-arrow-down-bold-outline"></i>
+      <div onclick="app.recipesController.setActiveRecipe('${this.id}')"  class="list-card elevation-4 d-flex selectable">
+        <div>
+          <img src="${this.imgUrl}" class="list-image" alt="recipe picture">
+        </div>
+        <div class="p-2 d-flex flex-column justify-content-center">
+          <h3>${this.title}</h3>
+          <p>${this.description}</p>
+        </div>
       </div>
     </div>
-  </div>`
+  
+  `
   }
 
   get ingredientFormatter() {
