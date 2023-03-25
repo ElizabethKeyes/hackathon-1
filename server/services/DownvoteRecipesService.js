@@ -5,11 +5,12 @@ class DownvoteRecipesService {
         const downvote = await dbContext.DownvoteRecipes.findById({ recipeId: downvoteData.recipeId, userId: downvoteData.userId })
         if (downvote) {
             const newDownvote = await dbContext.DownvoteRecipes.findOneAndDelete(downvote._id)
+        } else {
+            const upVote = await dbContext.UpvoteRecipes.findOneAndDelete({
+                recipeId: downvoteData.recipeId, userId: downvoteData.userId
+            })
+            const newDownvote = await dbContext.DownvoteRecipes.create(downvoteData)
         }
-        const upVote = await dbContext.UpvoteRecipes.findOneAndDelete({
-            recipeId: downvoteData.recipeId, userId: downvoteData.userId
-        })
-        const newDownvote = await dbContext.DownvoteRecipes.create(downvoteData)
         return newDownvote
     }
 
