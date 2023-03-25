@@ -48,6 +48,18 @@ export class RecipesController {
     bootstrap.Modal.getOrCreateInstance('#modal').hide()
   }
 
+  async deleteRecipe(recipeId) {
+    if (await Pop.confirm("are you sure you want to? its permanent!")) {
+
+      console.log('deleting recipe', recipeId)
+      try {
+        await recipesService.deleteRecipe(recipeId)
+      } catch (error) {
+
+      }
+    }
+  }
+
   async getAllRecipes() {
     try {
       await recipesService.getAllRecipes()
